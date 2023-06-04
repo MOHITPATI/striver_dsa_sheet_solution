@@ -1,0 +1,65 @@
+#include <bits/stdc++.h> 
+vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m) {
+	// Write your code here.
+    bool a = false;
+	bool b = false;
+	bool c = false;
+	if(matrix[0][0]==0){
+		a=true;
+	}
+	for(int j=0;j<m;j++){
+		if(matrix[0][j]==0){
+			b=true;
+		}
+	}
+	for(int i=0;i<n;i++){
+		if(matrix[i][0]==0){
+			c=true;
+		}
+	}
+	for(int i=1;i<n;i++){
+		for(int j=1;j<m;j++){
+			if(matrix[i][j]==0){
+				matrix[i][0]=0;
+				matrix[0][j]=0;
+			}
+		}
+	}
+	for(int j=1;j<m;j++){
+		if(matrix[0][j]==0){
+			int i=1;
+			while(i<n){
+				matrix[i][j]=0;
+				i++;
+			}
+		}
+	}
+	for(int i=1;i<n;i++){
+		if(matrix[i][0]==0){
+			int j=1;
+			while(j<m){
+				matrix[i][j]=0;
+				j++;
+			}
+		}
+	}
+    if(b==true) {
+		for(int j=0;j<m;j++){
+			matrix[0][j]=0;
+		}
+	}
+	if(c==true) {
+		for(int i=0;i<n;i++){
+			matrix[i][0]=0;
+		}
+	}
+	if(a==true){
+		for(int j=0;j<m;j++){
+			matrix[0][j]=0;
+		}
+		for(int i=0;i<n;i++){
+			matrix[i][0]=0;
+		}
+	}
+	return matrix;
+}
