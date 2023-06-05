@@ -1,0 +1,27 @@
+#include <bits/stdc++.h> 
+vector<int> nextPermutation(vector<int> &arr, int n)
+{
+    //  Write your code here.
+    // step 1:
+    int i=n-2;
+    while(i>=0&&arr[i]>=arr[i+1]){
+        i--;
+    }
+    if(i<0){
+        sort(arr.begin(),arr.end());
+        return arr;
+    }
+    // step 2:
+    int j=n-1;
+    while(j>i){
+       if(arr[i]<arr[j]){
+           break;
+       }
+       j--;
+    }
+
+    // step 3:
+    swap(arr[i],arr[j]);
+    sort(arr.begin()+i+1,arr.end());
+    return arr;
+}
