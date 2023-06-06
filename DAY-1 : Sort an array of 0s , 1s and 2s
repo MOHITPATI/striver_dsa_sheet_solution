@@ -1,0 +1,20 @@
+void sort012(int *arr, int n)
+{
+   //   Write your code here
+   int x=0,y=0,z=n-1;
+   while(y<=z){
+      if(arr[y]==0){
+         swap(arr[x],arr[y]);
+         x++;
+         y++;
+      }
+      else if(arr[y]==1){
+         y++;
+      }
+      else{
+         swap(arr[y],arr[z]);
+         z--;
+      }
+   }
+
+}
