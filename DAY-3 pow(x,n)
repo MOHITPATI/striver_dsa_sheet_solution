@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+
+long fun(int x,int n,int m){
+    if(n==0) return 1; 
+	long p = fun(x,n/2,m);
+	if(n&1){
+        return (p%m*p%m*x%m)%m; 
+	}else{
+		return (p%m*p%m)%m;
+	}
+}
+int modularExponentiation(int x, int n, int m) {
+	// Write your code here.
+    return fun(x,n,m)%m;
+}
