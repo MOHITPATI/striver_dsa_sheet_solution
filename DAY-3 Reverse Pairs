@@ -1,0 +1,55 @@
+#include <bits/stdc++.h> 
+    void merge(vector<int> &arr, int l, int m, int r,int &ans)
+    {
+        int j=m+1;
+        for(int i=l;i<=m;i++){
+            while(j<=r&&arr[i]>2*(long long)arr[j]){
+                j++;
+            }
+            ans+=j-(m+1);
+        }
+         // Your code here
+         int temp[r-l+1];
+         int p1=l,p2=m+1,p3=0;
+         while(p1<=m&&p2<=r){
+             if(arr[p1]<=arr[p2]){
+                 temp[p3]=arr[p1];
+                 p1++;
+                 p3++;
+             }
+             else{
+                 temp[p3]=arr[p2];
+                 p2++;
+                 p3++;
+             }
+         }
+         while(p1<=m){
+             temp[p3]=arr[p1];
+                 p1++;
+                 p3++;
+         }
+         while(p2<=r){
+             temp[p3]=arr[p2];
+                 p2++;
+                 p3++;
+         }
+         for(int i=0;i<=r-l;i++){
+             arr[l+i]=temp[i];
+         }
+         
+    }
+    void mergeSort(vector<int>& arr, int l, int r,int &ans)
+    {
+        //code here
+        if(l>=r)
+        return;
+        int mid = l + (r-l)/2;
+        mergeSort(arr,l,mid,ans);
+        mergeSort(arr,mid+1,r,ans);
+        merge(arr,l,mid,r,ans);
+    }
+    int reversePairs(vector<int>& nums,int n) {
+        int cnt=0;
+        mergeSort(nums,0,nums.size()-1,cnt);
+        return cnt;
+    }
